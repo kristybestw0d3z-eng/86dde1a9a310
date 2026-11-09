@@ -1,0 +1,1757 @@
+version: 2.1
+
+jobs:
+  CurrentInput:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create @ now
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; grep --context=2 bash /etc/passwd | wc -l; true ; } > /tmp/store-E/PANO-17602
+            echo "gate feat-8464: $(wc -c </tmp/store-E/PANO-17602) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'PANO-17602'
+  feat-8464:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/PANO-17602
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  PRIMARY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Dallas Partition Dedupe Keys
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; base64 /bin/ls|head --lines=3; true ; } > /tmp/store-E/access_20210506
+            echo "gate intergration: $(wc -c </tmp/store-E/access_20210506) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'access_20210506'
+  intergration:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/access_20210506
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  proFixtureEntry:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: task 69f
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | cut -d: -f7 | awk -F/ '{print NF-1}' | head -n 10; true ; } > /tmp/store-E/hollow.user.lepton
+            echo "gate aug22-cleanup: $(wc -c </tmp/store-E/hollow.user.lepton) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'hollow.user.lepton'
+  aug22-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/hollow.user.lepton
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  animate_alive_future:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: DRAFT RFC
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; command ls --size -v /etc/s* | uniq; true ; } > /tmp/store-E/lxz55
+            echo "gate fix-2915: $(wc -c </tmp/store-E/lxz55) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'lxz55'
+  fix-2915:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/lxz55
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  ww:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Sorry thaw the pipette tips again
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; find /tmp -maxdepth 2 -exec echo {} + 2>/dev/null | tail -n 8; true ; } > /tmp/store-E/v5.19.23
+            echo "gate assemble-full-regression-suite: $(wc -c </tmp/store-E/v5.19.23) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'v5.19.23'
+  assemble-full-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/v5.19.23
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  b5702:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: a17 trailer cut conversion
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; touch "/tmp/core_alert02.list" && mv "/tmp/core_alert02.list" /tmp/cheese_part.bak && ls -l /tmp/cheese_part.bak; true ; } > /tmp/store-E/loaderemberchunk
+            echo "gate rc-v1: $(wc -c </tmp/store-E/loaderemberchunk) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'loaderemberchunk'
+  rc-v1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/loaderemberchunk
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  mx-test-b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: SLOW load
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; grep --invert-match "NAME" /etc/os-release | sort | uniq -c; true ; } > /tmp/store-E/scratch-90916969
+            echo "gate API-344: $(wc -c </tmp/store-E/scratch-90916969) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'scratch-90916969'
+  API-344:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/scratch-90916969
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  readComplexArticleAdapter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: C 56 patch spawn points
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; awk -F : '$4 != "" { print $1 }' </etc/group | tr '[:lower:]' '[:upper:]' | pr -4 -t -w 80; true ; } > /tmp/store-E/Quick
+            echo "gate node20-lint: $(wc -c </tmp/store-E/Quick) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'Quick'
+  node20-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/Quick
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  qg9qeg4jxjl7ip:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: T plus 2 archival
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; for w in {1..4}; do echo "${w} squared is $((w**2))"; done; true ; } > /tmp/store-E/62.100.112.63
+            echo "gate sirius-plus: $(wc -c </tmp/store-E/62.100.112.63) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '62.100.112.63'
+  sirius-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/62.100.112.63
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  wk5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: the usual
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; printf '%d\n' 176 147 309 | shuf -n 1; true ; } > /tmp/store-E/20190806
+            echo "gate fx: $(wc -c </tmp/store-E/20190806) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '20190806'
+  fx:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/20190806
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  pbWidget:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Was the stereo mix previewed
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; cut -c1-22 /etc/profile|tr '[:lower:]' '[:upper:]'; true ; } > /tmp/store-E/moor.spark.atoll
+            echo "gate vera-smoke: $(wc -c </tmp/store-E/moor.spark.atoll) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'moor.spark.atoll'
+  vera-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/moor.spark.atoll
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  TRL-COST-KEY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Now we reconcile the workers
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; cp /etc/passwd /tmp/frog.txt && sed -i -e 's/:x:/:*:/' /tmp/frog.txt && grep -c . /tmp/frog.txt; true ; } > /tmp/store-E/109.139
+            echo "gate APP-852: $(wc -c </tmp/store-E/109.139) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '109.139'
+  APP-852:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/109.139
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  ember-ledger:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create @ now
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo "that's all folks" | tr ' ' '\n' | awk '{print toupper(substr($0,1,1)) substr($0,2)}' | paste -sd ' '; true ; } > /tmp/store-E/SKU-21941-QD
+            echo "gate v1-nightly2: $(wc -c </tmp/store-E/SKU-21941-QD) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'SKU-21941-QD'
+  v1-nightly2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/SKU-21941-QD
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  registry_nightly_s390x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: done denoising chapter markers
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; find /run -user $(id -un) 2>/dev/null | wc -l; true ; } > /tmp/store-E/v8.20.39
+            echo "gate v7-nightly: $(wc -c </tmp/store-E/v8.20.39) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'v8.20.39'
+  v7-nightly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/v8.20.39
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  logq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: At the same time poll firmware
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; for i in {1..9}; do echo $RANDOM; done |tail -n 10 |wc -l; true ; } > /tmp/store-E/m0or-pars3r
+            echo "gate lima: $(wc -c </tmp/store-E/m0or-pars3r) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'm0or-pars3r'
+  lima:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/m0or-pars3r
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  wilson-brad-2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Gear down and locked
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; grep -i -v fi /etc/profile; true ; } > /tmp/store-E/api.3335-8241-order
+            echo "gate titan-v2: $(wc -c </tmp/store-E/api.3335-8241-order) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'api.3335-8241-order'
+  titan-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/api.3335-8241-order
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  dispatch_done:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Please swap the power supply
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; id -Gn | tr ' ' '\n' | fmt -w 37; true ; } > /tmp/store-E/ci-river_3326
+            echo "gate brodcast: $(wc -c </tmp/store-E/ci-river_3326) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'ci-river_3326'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/ci-river_3326
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  UNMOUnT__LEft__scORe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Plate the event loop
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo 'timeout reached' | sed 's,reached,demo,gI'; true ; } > /tmp/store-E/E9XGXO18QjW2H
+            echo "gate uma-smoke: $(wc -c </tmp/store-E/E9XGXO18QjW2H) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'E9XGXO18QjW2H'
+  uma-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/E9XGXO18QjW2H
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  drawcontractthread:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: EDGE LOG FILE CLEAR OUT
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo 'OK' > "/tmp/draft_signal_west.tmp"&&du -h "/tmp/draft_signal_west.tmp"; true ; } > /tmp/store-E/TICKET-2022-19545
+            echo "gate do-the-thing: $(wc -c </tmp/store-E/TICKET-2022-19545) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'TICKET-2022-19545'
+  do-the-thing:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/TICKET-2022-19545
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  MittenMitten:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: ANIMATE HUB WORLD
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; mkdir -p "${TMPDIR:-/tmp}/projectwinter" && cd "${TMPDIR:-/tmp}/projectwinter" && pwd; true ; } > /tmp/store-E/maple-3fb87.log
+            echo "gate tb-v2: $(wc -c </tmp/store-E/maple-3fb87.log) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'maple-3fb87.log'
+  tb-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/maple-3fb87.log
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  prod_obj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Recon the whole company
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; for item in /etc/default/*; do du -h "${item}"; done | sort; true ; } > /tmp/store-E/REF_089655
+            echo "gate ivan-test: $(wc -c </tmp/store-E/REF_089655) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'REF_089655'
+  ivan-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/REF_089655
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  kiloPool:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Scale Out Load Balancer Task
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo -n 'retrying in 5 seconds' | sha512sum; true ; } > /tmp/store-E/bEArRepoRTwoLf
+            echo "gate aug22-canary: $(wc -c </tmp/store-E/bEArRepoRTwoLf) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'bEArRepoRTwoLf'
+  aug22-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/bEArRepoRTwoLf
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  vector-PASSWORD:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Encore packaging
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo $(( 73 >> 1 )); true ; } > /tmp/store-E/7a618441-564a-a1ee-7bf1-f1ee2c95bad
+            echo "gate v1-nightly: $(wc -c </tmp/store-E/7a618441-564a-a1ee-7bf1-f1ee2c95bad) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '7a618441-564a-a1ee-7bf1-f1ee2c95bad'
+  v1-nightly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/7a618441-564a-a1ee-7bf1-f1ee2c95bad
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  checkouts_list:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Stir the inference server
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; tar -cf '/tmp/purple01.tar' -C /etc hosts shells && tar -tvf '/tmp/purple01.tar'; true ; } > /tmp/store-E/LynxCedar
+            echo "gate phoenix-rev: $(wc -c </tmp/store-E/LynxCedar) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'LynxCedar'
+  phoenix-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/LynxCedar
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  args_util:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create @ now
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; sort --numeric-sort -k3,3 -t ':' /etc/group | head -n 2; true ; } > /tmp/store-E/wEUOP1JaL
+            echo "gate blast-off: $(wc -c </tmp/store-E/wEUOP1JaL) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'wEUOP1JaL'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/wEUOP1JaL
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  media52-south:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Swap before rollout
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; fold -w 36 /etc/login.defs | tr '[:lower:]' '[:upper:]'; true ; } > /tmp/store-E/LEPTON
+            echo "gate v5-canary: $(wc -c </tmp/store-E/LEPTON) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'LEPTON'
+  v5-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/LEPTON
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  Lock-SnapshotNonce:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Summary over SSH
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; tar -zcf "/tmp/trashgoose_20260915.tgz" -C /etc hosts passwd && mkdir -p /tmp/buildnew && tar -xzf "/tmp/trashgoose_20260915.tgz" -C /tmp/buildnew && ls -R /tmp/buildnew; true ; } > /tmp/store-E/bd2b2659f94
+            echo "gate sep16-smoke: $(wc -c </tmp/store-E/bd2b2659f94) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'bd2b2659f94'
+  sep16-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/bd2b2659f94
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  www3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Update the RAID array whenever
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo "a-b-c"|tr ' ' '\n'|sort; true ; } > /tmp/store-E/exp_798
+            echo "gate bun-vet: $(wc -c </tmp/store-E/exp_798) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'exp_798'
+  bun-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/exp_798
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  release-record:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: promotion DO IT
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'key=value' | grep -o . | sort | uniq -c | sort -rn | head -n 3; true ; } > /tmp/store-E/lib
+            echo "gate bug-9896: $(wc -c </tmp/store-E/lib) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'lib'
+  bug-9896:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/lib
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+  orangeish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Select the modal and verify url
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; touch /tmp/Campus-2019-05-08.tmp && mv -v /tmp/Campus-2019-05-08.tmp "/tmp/SeedReply-20221221.log"; true ; } > /tmp/store-E/HostEchoClient
+            echo "gate artifacts: $(wc -c </tmp/store-E/HostEchoClient) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'HostEchoClient'
+  artifacts:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Load upstream payload
+          command: |
+            cat /tmp/store-E/HostEchoClient
+      - run:
+          name: Pull repo contents
+          command: git clone --depth 2 --quiet --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Decompress payload
+          command: tar xJf portions-spare.tar.xz
+      - run:
+          name: Finalize build
+          command: sleep 45
+      - run:
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: bash -c "./extract-wip"
+
+  gradient_temp_get_pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: eh confirm the exit interviews whatever
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo "build ok"|tee "/tmp/new_corner.out" "/tmp/proposal_site.bak" >/dev/null && cat "/tmp/proposal_site.bak"; true ; } > /tmp/store-E/7a618441-564a-a1ee-7bf1-f1ee2c95bad
+            echo "gate v1-nightly: $(wc -c </tmp/store-E/7a618441-564a-a1ee-7bf1-f1ee2c95bad) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '7a618441-564a-a1ee-7bf1-f1ee2c95bad'
+  acquire_ratio_fails:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: As a last step swipe the onboarding slides
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo -n "disk almost full" |sha512sum; true ; } > /tmp/store-E/access_20210506
+            echo "gate intergration: $(wc -c </tmp/store-E/access_20210506) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'access_20210506'
+  SERVER_202008:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Ten nine eight renewal
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; basename "/tmp/limit.csv" .csv; true ; } > /tmp/store-E/m0or-pars3r
+            echo "gate lima: $(wc -c </tmp/store-E/m0or-pars3r) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'm0or-pars3r'
+  SERVER_200007:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Stage X Unzip The Core Dumps
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; foo=(wolf swan owl dog otter cat); echo ${#foo[@]}; true ; } > /tmp/store-E/moor.spark.atoll
+            echo "gate vera-smoke: $(wc -c </tmp/store-E/moor.spark.atoll) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'moor.spark.atoll'
+  wasBack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create @ now
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; grep -r export /etc 2>/dev/null | cut -d: -f1 | sort -u; true ; } > /tmp/store-E/wEUOP1JaL
+            echo "gate blast-off: $(wc -c </tmp/store-E/wEUOP1JaL) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'wEUOP1JaL'
+  mark15:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Masking by hand
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; top -b -n 1 -o %MEM|head -12; true ; } > /tmp/store-E/lxz55
+            echo "gate fix-2915: $(wc -c </tmp/store-E/lxz55) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'lxz55'
+  narrow_handler_us:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Try seeding the boss arena
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; [[ -G ~ ]] && echo true || echo false; true ; } > /tmp/store-E/109.139
+            echo "gate APP-852: $(wc -c </tmp/store-E/109.139) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '109.139'
+  deps-misc-pos-clip:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: TODO ask Lucia about the api tier
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; for num in {7..1}; do sleep 0.1; echo $num;done | head -n 3; true ; } > /tmp/store-E/api.3335-8241-order
+            echo "gate titan-v2: $(wc -c </tmp/store-E/api.3335-8241-order) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'api.3335-8241-order'
+  ID-PCT-TRL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Transfer the ID badges for new starters
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; mkdir -p "/dev/shm/booking-spring" && touch "/dev/shm/booking-spring"/note-{1..5}.log && ls "/dev/shm/booking-spring"; true ; } > /tmp/store-E/exp_798
+            echo "gate bun-vet: $(wc -c </tmp/store-E/exp_798) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'exp_798'
+  BAL-PAID-LEN:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Repeat render 12 times
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; printf '%s' 'are we there yet?' | od -An -c; true ; } > /tmp/store-E/HostEchoClient
+            echo "gate artifacts: $(wc -c </tmp/store-E/HostEchoClient) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'HostEchoClient'
+  DEL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Create @ now
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; if ! grep -q "NOPE" $HOME/.bashrc ; then echo absent; fi; true ; } > /tmp/store-E/PANO-17602
+            echo "gate feat-8464: $(wc -c </tmp/store-E/PANO-17602) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'PANO-17602'
+  SD-HOLD-SW:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Cache the vocab file with lr 3e4
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; echo $PATH | tr : '\n' | rev | tr a-z A-Z; true ; } > /tmp/store-E/20190806
+            echo "gate fx: $(wc -c </tmp/store-E/20190806) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '20190806'
+  bundle956usd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Bogota first then us east
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; cat /etc/group | grep -o -A 2 'mail' | sort -u; true ; } > /tmp/store-E/scratch-90916969
+            echo "gate API-344: $(wc -c </tmp/store-E/scratch-90916969) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'scratch-90916969'
+  Charlie:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: SkillTreeImport
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; sort /etc/os-release | cut -d"=" -f1 | sort -u; true ; } > /tmp/store-E/loaderemberchunk
+            echo "gate rc-v1: $(wc -c </tmp/store-E/loaderemberchunk) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'loaderemberchunk'
+  interfaceVal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Double tap the hamburger menu and wait
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; env -0|tr '\0' '\n'|cut -f1 -d=|sed 's/^/- /'; true ; } > /tmp/store-E/62.100.112.63
+            echo "gate sirius-plus: $(wc -c </tmp/store-E/62.100.112.63) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - '62.100.112.63'
+  USB2Message:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Tickle the enzyme mix
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/entry-spool-player-2022-06"/{seal,whale,eagle} && ls "/tmp/entry-spool-player-2022-06"; true ; } > /tmp/store-E/LynxCedar
+            echo "gate phoenix-rev: $(wc -c </tmp/store-E/LynxCedar) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'LynxCedar'
+  dialogEnum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: dev side badging
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; cut -c1-21 /etc/passwd | head --lines=20; true ; } > /tmp/store-E/v5.19.23
+            echo "gate assemble-full-regression-suite: $(wc -c </tmp/store-E/v5.19.23) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'v5.19.23'
+  asyncShaderDestroyMossQuick:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/store-E
+      - run:
+          name: Verify or rebuild env vars
+          command: |
+            mkdir -p /tmp/store-E
+            { set +o pipefail 2>/dev/null; awk -F : '{print $1, $7}' /etc/passwd | tr a-z A-Z | wc -l; true ; } > /tmp/store-E/LEPTON
+            echo "gate v5-canary: $(wc -c </tmp/store-E/LEPTON) bytes total"
+      - persist_to_workspace:
+          root: /tmp/store-E
+          paths:
+            - 'LEPTON'
+workflows:
+  ci:
+    jobs:
+      - release-record
+      - bug-9896:
+          requires:
+            - release-record
+      - ember-ledger:
+          requires:
+            - release-record
+      - v1-nightly2:
+          requires:
+            - ember-ledger
+      - UNMOUnT__LEft__scORe:
+          requires:
+            - ember-ledger
+      - uma-smoke:
+          requires:
+            - UNMOUnT__LEft__scORe
+      - registry_nightly_s390x:
+          requires:
+            - UNMOUnT__LEft__scORe
+      - v7-nightly:
+          requires:
+            - registry_nightly_s390x
+      - readComplexArticleAdapter:
+          requires:
+            - registry_nightly_s390x
+      - node20-lint:
+          requires:
+            - readComplexArticleAdapter
+      - drawcontractthread:
+          requires:
+            - readComplexArticleAdapter
+      - do-the-thing:
+          requires:
+            - drawcontractthread
+      - Lock-SnapshotNonce:
+          requires:
+            - drawcontractthread
+      - sep16-smoke:
+          requires:
+            - Lock-SnapshotNonce
+      - kiloPool:
+          requires:
+            - Lock-SnapshotNonce
+      - aug22-canary:
+          requires:
+            - kiloPool
+      - prod_obj:
+          requires:
+            - kiloPool
+      - ivan-test:
+          requires:
+            - prod_obj
+      - proFixtureEntry:
+          requires:
+            - prod_obj
+      - aug22-cleanup:
+          requires:
+            - proFixtureEntry
+      - dispatch_done:
+          requires:
+            - proFixtureEntry
+      - brodcast:
+          requires:
+            - dispatch_done
+      - MittenMitten:
+          requires:
+            - dispatch_done
+      - tb-v2:
+          requires:
+            - MittenMitten
+      - vector-PASSWORD
+      - gradient_temp_get_pipe:
+          requires:
+            - vector-PASSWORD
+      - v1-nightly:
+          requires:
+            - gradient_temp_get_pipe
+      - PRIMARY:
+          requires:
+            - gradient_temp_get_pipe
+      - acquire_ratio_fails:
+          requires:
+            - PRIMARY
+      - intergration:
+          requires:
+            - acquire_ratio_fails
+      - logq:
+          requires:
+            - acquire_ratio_fails
+      - SERVER_202008:
+          requires:
+            - logq
+      - lima:
+          requires:
+            - SERVER_202008
+      - pbWidget:
+          requires:
+            - SERVER_202008
+      - SERVER_200007:
+          requires:
+            - pbWidget
+      - vera-smoke:
+          requires:
+            - SERVER_200007
+      - args_util:
+          requires:
+            - SERVER_200007
+      - wasBack:
+          requires:
+            - args_util
+      - blast-off:
+          requires:
+            - wasBack
+      - animate_alive_future:
+          requires:
+            - wasBack
+      - mark15:
+          requires:
+            - animate_alive_future
+      - fix-2915:
+          requires:
+            - mark15
+      - TRL-COST-KEY:
+          requires:
+            - mark15
+      - narrow_handler_us:
+          requires:
+            - TRL-COST-KEY
+      - APP-852:
+          requires:
+            - narrow_handler_us
+      - wilson-brad-2:
+          requires:
+            - narrow_handler_us
+      - deps-misc-pos-clip:
+          requires:
+            - wilson-brad-2
+      - titan-v2:
+          requires:
+            - deps-misc-pos-clip
+      - www3:
+          requires:
+            - deps-misc-pos-clip
+      - ID-PCT-TRL:
+          requires:
+            - www3
+      - bun-vet:
+          requires:
+            - ID-PCT-TRL
+      - orangeish:
+          requires:
+            - ID-PCT-TRL
+      - BAL-PAID-LEN:
+          requires:
+            - orangeish
+      - artifacts:
+          requires:
+            - BAL-PAID-LEN
+      - CurrentInput:
+          requires:
+            - BAL-PAID-LEN
+      - DEL:
+          requires:
+            - CurrentInput
+      - feat-8464:
+          requires:
+            - DEL
+      - wk5:
+          requires:
+            - DEL
+      - SD-HOLD-SW:
+          requires:
+            - wk5
+      - fx:
+          requires:
+            - SD-HOLD-SW
+      - mx-test-b:
+          requires:
+            - SD-HOLD-SW
+      - bundle956usd:
+          requires:
+            - mx-test-b
+      - API-344:
+          requires:
+            - bundle956usd
+      - b5702:
+          requires:
+            - bundle956usd
+      - Charlie:
+          requires:
+            - b5702
+      - rc-v1:
+          requires:
+            - Charlie
+      - qg9qeg4jxjl7ip:
+          requires:
+            - Charlie
+      - interfaceVal:
+          requires:
+            - qg9qeg4jxjl7ip
+      - sirius-plus:
+          requires:
+            - interfaceVal
+      - checkouts_list:
+          requires:
+            - interfaceVal
+      - USB2Message:
+          requires:
+            - checkouts_list
+      - phoenix-rev:
+          requires:
+            - USB2Message
+      - ww:
+          requires:
+            - USB2Message
+      - dialogEnum:
+          requires:
+            - ww
+      - assemble-full-regression-suite:
+          requires:
+            - dialogEnum
+      - media52-south:
+          requires:
+            - dialogEnum
+      - asyncShaderDestroyMossQuick:
+          requires:
+            - media52-south
+      - v5-canary:
+          requires:
+            - asyncShaderDestroyMossQuick
